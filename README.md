@@ -6,31 +6,29 @@ This project prioritizes integration correctness over UI complexity, demonstrati
 
 ---
 
-## Overview
+## Core Objectives
 
-This application:
-
-- Authenticates via SMART on FHIR
-- Implements OAuth 2.0 Authorization Code + PKCE
-- Retrieves FHIR resources:
+- Implement full SMART on FHIR authentication flow
+- Use OAuth 2.0 Authorization Code + PKCE securely
+- Retrieve and process FHIR resources:
   - Patient
   - Observation
   - Encounter
-- Parses FHIR Bundle responses
-- Handles token lifecycle (including refresh)
-- Applies filtering and error handling
+- Parse and normalize FHIR Bundle responses
+- Handle token lifecycle (including refresh)
+- Apply filtering and error handling strategies
 
 ---
 
-## Architecture
+## Architecture Overview
 
 Frontend (minimal UI)  
 ↓  
-Backend (OAuth + API orchestration)  
+Backend (OAuth orchestration + FHIR client)  
 ↓  
-FHIR Server (SMART-enabled EHR)
+FHIR Server (SMART-enabled EHR sandbox or HAPI FHIR)
 
-Layers implemented:
+This project explicitly separates:
 
 - Authentication layer (OAuth + PKCE)
 - API client layer (FHIR requests)
@@ -38,7 +36,7 @@ Layers implemented:
 
 ---
 
-## Tech Stack
+## Tech Stack (Suggested)
 
 - Backend: Node.js (Express) or Python (FastAPI)
 - Frontend: Plain HTML or minimal React
@@ -48,17 +46,17 @@ Layers implemented:
 
 ---
 
-## SMART on FHIR Flow
+## SMART on FHIR Flow Implementation
 
 ### 1. App Registration
 
-Register your app in a SMART-compatible environment.
+Register the application in a SMART-compatible environment.
 
 You will receive:
 
 - client_id
-- authorization endpoint
-- token endpoint
+- Authorization endpoint
+- Token endpoint
 - FHIR base URL
 
-Example redirect URI:
+Define a redirect URI, e.g.:
